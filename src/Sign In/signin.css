@@ -1,0 +1,103 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    width: 350px;
+    height: 410px;
+    border: 2px solid #FFC107;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .logo h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 15px;
+  }
+  
+  .logo span {
+    color: #FFC107;
+  }
+  
+  .form-container h2 {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+  
+  label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin: 15px 0 15px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .continue-btn {
+    width: 100%;
+    background-color: #FFD700;
+    font-weight: bold;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #0048BA;
+    transition: background-color 0.3s;
+  }
+  
+  .continue-btn:hover {
+    background-color: #FFC107;
+  }
+  
+  .agreement {
+    font-size: 13px;
+    margin: 15px 0;
+  }
+  
+  
+  .help-link {
+    display: block;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: left;
+    margin: 15px;
+  }
+  
+  hr {
+    border: 0.5px solid #FFD700;
+    margin: 20px 0;
+  }
+  
+  
+  .new-account {
+    margin-top: 15px;
+  }
+  
+  .new-account p {
+    font-size: 15px;
+    color: black;
+  }
