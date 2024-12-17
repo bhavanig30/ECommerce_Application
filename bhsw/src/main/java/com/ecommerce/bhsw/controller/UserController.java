@@ -11,6 +11,7 @@ import com.ecommerce.bhsw.models.User;;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @CrossOrigin(origins = "http://127.0.0.1:5500") 
 
     @PostMapping("/login")
     public String loginUser(@RequestBody User loginDetails) {
