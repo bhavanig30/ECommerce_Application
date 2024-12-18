@@ -1,4 +1,5 @@
 package com.ecommerce.bhsw.controller;
+
 import com.ecommerce.bhsw.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -15,7 +16,6 @@ import com.ecommerce.bhsw.models.User;;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-   
 
     @PostMapping("/login")
     public String loginUser(@RequestBody User loginDetails,HttpSession session) {
@@ -28,6 +28,7 @@ public class UserController {
         }
         return "Invalid email or password.";
     }
+
     @PostMapping("/register")
     public String registerUser(@RequestBody User newUser) {
         // Check if the phone number or email already exists

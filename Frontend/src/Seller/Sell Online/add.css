@@ -19,8 +19,8 @@
     margin-bottom: 10px;
     background-color: #fff;
     padding: 20px;
-    width: 350px;
-    height: 620px;
+    width: 400px;
+    height: 730px;
     border: 2px solid #FFC107;
     border-radius: 5px;
     text-align: center;
@@ -47,23 +47,25 @@
     display: block;
     text-align: left;
     font-weight: bold;
-    margin: 5px 0 10px;
+    margin: 5px 0 5px;
   }
   
   input {
     width: 100%;
+    height: 30px;
     padding: 10px;
     border: 2px solid #FFD700;
     border-radius: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
   
-  .verify-btn {
+  .add {
     width: 100%;
     background-color: #FFD700;
     font-weight: bold;
     border: none;
     padding: 8px;
+    margin-top: 10px;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -71,32 +73,6 @@
     transition: background-color 0.3s;
   }
   
-  .verify-btn:hover {
+  .add:hover {
     background-color: #FFC107;
-  }
-  
-  .otp-info {
-    font-size: 13px;
-    margin: 15px 0;
-  }
-  
-  
-  hr {
-    border: 0.5px solid #FFD700;
-    margin: 20px 0;
-  }
-  
-  
-  .have-account {
-    margin-top: 15px;
-  }
-  
-  .have-account p {
-    font-size: 15px;
-    color: black;
-  }
-
-  .agreement {
-    font-size: 13px;
-    margin: 15px 0;
   }
