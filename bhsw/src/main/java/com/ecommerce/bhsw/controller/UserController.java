@@ -1,24 +1,29 @@
 package com.ecommerce.bhsw.controller;
 import com.ecommerce.bhsw.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired; // For dependency injection
 import org.springframework.web.bind.annotation.*; // For REST controller annotations
 
 import java.util.Optional;
 import com.ecommerce.bhsw.models.User;;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500") 
 @RestController
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-    @CrossOrigin(origins = "http://127.0.0.1:5500") 
+   
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User loginDetails) {
+    public String loginUser(@RequestBody User loginDetails,HttpSession session) {
         Optional<User> user = userRepository.findByphonenumber(loginDetails.getPhonenumber());
         Optional<User> user1 = userRepository.findByemail(loginDetails.getemail());
 
-        if (user.isPresent() || user1.isPresent()) {
+        if (user.isPresent() || user1.isPresent() ) {
+            session.setAttribute("userId", user.orElse(user1.get()).getId());
             return "Login successful!";
         }
         return "Invalid email or password.";

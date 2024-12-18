@@ -2,9 +2,8 @@ package com.ecommerce.bhsw.models;
 
 import jakarta.persistence.*;
 
-
 @Entity
-public class User {
+public class Seller {
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
@@ -38,5 +37,27 @@ public String getemail() {
 public void setemail(String email) {
 	this.email = email;
 }
+private String password;
+public String getpassword() {
+	return password;
+}
+public void setpassword(String password) {
+	this.password = password;
+}
+private String storename;
+public String getstorename() {
+	return storename;
+}
+public void setstorename(String storename) {
+	this.storename = storename;
 }
 
+private String Address;
+public String getAddress(){
+    return Address;
+}
+public void setAddress(String Address){
+    this.Address=Address;
+}
+
+}
