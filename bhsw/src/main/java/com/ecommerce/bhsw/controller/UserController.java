@@ -1,4 +1,5 @@
 package com.ecommerce.bhsw.controller;
+
 import com.ecommerce.bhsw.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired; // For dependency injection
 import org.springframework.web.bind.annotation.*; // For REST controller annotations
@@ -6,12 +7,12 @@ import org.springframework.web.bind.annotation.*; // For REST controller annotat
 import java.util.Optional;
 import com.ecommerce.bhsw.models.User;;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
 @RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-    @CrossOrigin(origins = "http://127.0.0.1:5500") 
 
     @PostMapping("/login")
     public String loginUser(@RequestBody User loginDetails) {
@@ -23,6 +24,7 @@ public class UserController {
         }
         return "Invalid email or password.";
     }
+
     @PostMapping("/register")
     public String registerUser(@RequestBody User newUser) {
         // Check if the phone number or email already exists
