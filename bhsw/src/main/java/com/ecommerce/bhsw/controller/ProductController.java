@@ -21,10 +21,16 @@ public class ProductController {
 private ProductRepository productRepository;
 
 @PostMapping("/add")
-public ResponseEntity<String> addProduct(@RequestBody Product product) {
+public ResponseEntity<String> addProduct(@RequestBody Product product,HttpSession session) {
 
 
+    Long sellerId = (Long) session.getAttribute("sellerId");
+    if (sellerId == null) {
+        return ResponseEntity.status(401).body("Unauthorized. Please log in first.");
+    }
 
+    // Associate the product with the seller
+    product.setSellerId(sellerId);
     productRepository.save(product);
     return ResponseEntity.ok("Product added successfully!");
 }
@@ -47,6 +53,8 @@ public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
             product.setDescription(updatedProduct.getDescription());
             product.setColor(updatedProduct.getColor());
             product.setImageUrl(updatedProduct.getImageUrl());
+            product.setCategory(updatedProduct.getCategory());
+
             productRepository.save(product);
             return ResponseEntity.ok("Product updated successfully!");
         }).orElse(ResponseEntity.status(404).body("Product not found!"));

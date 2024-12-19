@@ -19,9 +19,10 @@ document.querySelector('.continue-btn').addEventListener('click', function () {
     })
     .then(response => response.text())
     .then(data => {
-        alert(data); // Shows "Login successful!" or "Invalid Login."
-        if(data.toLowerCase()=="Login successful!"){
+        //alert(data); // Shows "Login successful!" or "Invalid Login."
+        if(data.trim()=="Login successful!"){
             window.location.replace("../Sell Online/so.html");
+            //console.log("222");
         }
     })
     .catch(error => {
