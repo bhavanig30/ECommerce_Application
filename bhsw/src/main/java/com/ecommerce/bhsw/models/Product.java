@@ -30,11 +30,11 @@ public int getPrice(){
 public void setPrice(int price){
 	this.price=price;
 }
-private int category;
-public int getCategory(){
+private String category;
+public String getCategory(){
 	return category;
 }
-public void setCategory(int category){
+public void setCategory(String category){
 	this.category=category;
 }
 private int size;

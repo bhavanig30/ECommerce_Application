@@ -19,7 +19,7 @@ document.querySelector('.verify-btn').addEventListener('click', function () {
         };
 
         // Send POST request to the backend
-        fetch('http://localhost:8081/users/register', {
+        fetch('http://localhost:8081/sellers/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -22,10 +22,14 @@ public class UserController {
         Optional<User> user = userRepository.findByphonenumber(loginDetails.getPhonenumber());
         Optional<User> user1 = userRepository.findByemail(loginDetails.getemail());
 
-        if (user.isPresent() || user1.isPresent() ) {
-            session.setAttribute("userId", user.orElse(user1.get()).getId());
+        if (user.isPresent()) {
+            session.setAttribute("userId", user.get().getId());
+            return "Login successful!";
+        } else if (user1.isPresent()) {
+            session.setAttribute("userId", user1.get().getId());
             return "Login successful!";
         }
+    
         return "Invalid email or password.";
     }
 
