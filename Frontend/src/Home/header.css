@@ -15,10 +15,12 @@ header {
     align-items: center;
     background-color: #0048BA;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     position: sticky;
+    z-index: 10000;
+    height: 70px;
+    width: 100%;
     top: 0;
-    z-index: 1000;
 }
 
 /* Logo */
@@ -64,7 +66,7 @@ nav a:hover {
 .search-container button {
     padding: 5px 15px;
     font-size: 1em;
-    background-color: #FFD700;
+    background-color: #FFC107;
     color: #0048BA;
     border: none;
     border-radius: 5px;
@@ -73,7 +75,7 @@ nav a:hover {
 }
 
 .search-container button:hover {
-    background-color: #FFC107;
+    background-color: #FFD700;
 }
 
 /* Responsive Design */
