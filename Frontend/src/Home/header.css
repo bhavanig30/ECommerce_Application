@@ -17,9 +17,9 @@ header {
     color: white;
     padding: 10px 10px;
     position: sticky;
-    z-index: 10000;
+    z-index: 1000;
     height: 70px;
-    width: 100%;
+    width: 1519px;
     top: 0;
 }
 
@@ -29,6 +29,7 @@ header {
     font-weight: bold;
     color: #FFD700;
     text-decoration: none;
+    outline: none;
 }
 
 /* Navigation Bar */
@@ -76,29 +77,4 @@ nav a:hover {
 
 .search-container button:hover {
     background-color: #FFD700;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    nav {
-        display: none;
-    }
-
-    .menu-toggle {
-        display: block;
-        cursor: pointer;
-    }
-
-    .menu-toggle div {
-        width: 25px;
-        height: 3px;
-        background-color: white;
-        margin: 5px 0;
-    }
-}
-
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none;
-    }
 }
