@@ -1,55 +1,32 @@
 package com.ecommerce.bhsw.controller;
 
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-
 import com.ecommerce.bhsw.models.Seller;
 import com.ecommerce.bhsw.repository.SellerRepository;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-
-@CrossOrigin(origins = "http://127.0.0.1:5500") 
 @RestController
 @RequestMapping("/sellers")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class SellerController {
+
     @Autowired
     private SellerRepository sellerRepository;
-   
-
-    @PostMapping("/login")
-    public String loginSeller(@RequestBody Seller loginDetails,HttpSession session) {
-        Optional<Seller> seller = sellerRepository.findByphonenumber(loginDetails.getPhonenumber());
-        Optional<Seller> seller1 = sellerRepository.findByemail(loginDetails.getemail());
-    
-
-        if ((seller.isPresent() || seller1.isPresent())  && (seller.orElse(seller1.get()).getpassword().equals(loginDetails.getpassword()))) {
-            session.setAttribute("sellerId", seller.orElse(seller1.get()).getId());
-            return "Login successful!";
-        }
-        return "Invalid Login.";
-    }
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @PostMapping("/register")
-    public String registerSeller(@RequestBody Seller newSeller) {
-        // Check if the phone number or email already exists
-        if (sellerRepository.findByphonenumber(newSeller.getPhonenumber()).isPresent()) {
-            return "Phone number already registered!";
-        }
-
-        if (sellerRepository.findByemail(newSeller.getemail()).isPresent()) {
-            return "Email already registered!";
-        }
-
-        // Save the new user to the database
-        sellerRepository.save(newSeller);
-        return "User registered successfully!";
+    public ResponseEntity<Seller> registerSeller(@RequestBody Seller seller) {
+        Seller savedSeller = sellerRepository.save(seller);
+        return ResponseEntity.ok(savedSeller);
     }
-    @GetMapping("/logout")
-    public String logoutSeller(HttpSession session) {
-        session.invalidate(); // Clear the session
-        return "Logout successful!";
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @PostMapping("/login")
+    public ResponseEntity<Seller> loginSeller(@RequestBody Seller loginDetails) {
+        Seller seller = sellerRepository.findByEmail(loginDetails.getemail())
+                .orElseThrow(() -> new RuntimeException("Invalid email or password"));
+        if (!seller.getpassword().equals(loginDetails.getpassword())) {
+            throw new RuntimeException("Invalid email or password");
+        }
+        return ResponseEntity.ok(seller);
     }
-
 }

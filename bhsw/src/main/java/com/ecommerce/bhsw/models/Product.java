@@ -1,83 +1,96 @@
 package com.ecommerce.bhsw.models;
 
-
 import jakarta.persistence.*;
-
 
 @Entity
 public class Product {
-@Id
-@GeneratedValue(strategy=GenerationType.IDENTITY)
-private Long id;
-public Long getId() {
-	return id;
-}
-public void setId(Long id) {
-	this.id = id;
-}
-@Column(nullable=false)
-private String name;
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-private int price;
-public int getPrice(){
-	return price;
-}
-public void setPrice(int price){
-	this.price=price;
-}
-private String category;
-public String getCategory(){
-	return category;
-}
-public void setCategory(String category){
-	this.category=category;
-}
-private int size;
-public int getSize(){
-	return size;
-}
-public void setSize(int size){
-	this.size=size;
-}
-private String description;
-public String getDescription(){
-	return description;
-}
-public void setDescription(String description){
-	this.description=description;
-}
-private String color;
-public String getColor(){
-	return color;
-}
-public void setColor(String color){
-	this.color=color;
-}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Column(nullable = false)
-    private String imageUrl; // Field to store image URL
-
-    // Getters and setters for all fields
-    public String getImageUrl() {
-        return imageUrl;
+    private String name;
+    private String size;
+    private String colour;
+    private String category;
+    private Double price;
+    public Long getId() {
+        return id;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setId(Long id) {
+        this.id = id;
     }
-    @Column(nullable = false)
-    private Long sellerId; // Reference to the seller
-    
-    public Long getSellerId() {
-        return sellerId;
+
+    public String getName() {
+        return name;
     }
-    
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
+
+    public void setName(String name) {
+        this.name = name;
     }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
+    }
+
+    private String image;
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id", nullable = false)
+    private Seller seller;
+
+    // Getters and Setters
 }
