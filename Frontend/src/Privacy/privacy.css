@@ -19,26 +19,12 @@ body {
     padding: 20px;
 }
 
-iframe {
-    position: sticky;
-    z-index: 1000;
-}
-
-header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
 h1 {
     font-size: 2rem;
     text-align: center;
     color: #0048BA;
 }
 
-header p {
-    font-size: 0.9rem;
-}
 
 /* Main Content */
 main {
@@ -88,4 +74,9 @@ footer {
     padding: 10px 0;
     margin-top: 20px;
     font-size: 0.9rem;
+}
+
+#header {
+    position: sticky;
+    top: 0;
 }
