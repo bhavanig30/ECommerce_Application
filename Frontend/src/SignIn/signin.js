@@ -11,7 +11,7 @@ document.querySelector(".continue-btn").addEventListener("click", async () => {
         const token = await response.text();
         localStorage.setItem("jwt", token);
         alert("Login successful!");
-        window.location.href = "header.html";
+       location.replace("../Home/header.html");
     } else {
         alert("Invalid email or phone number.");
     }
