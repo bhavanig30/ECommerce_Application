@@ -1,28 +1,21 @@
-document.querySelector('.verify-btn').addEventListener('click', function () {
-    const n = document.getElementById('name').value;
-    const e = document.getElementById('email').value;
-    const p = document.getElementById('phno').value;
+document.querySelector(".verify-btn").addEventListener("click", async () => {
+    const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const phone = document.querySelector("#phno").value;
+    //const password = prompt("Set your password:");
+    const password = document.querySelector("#pass").value;
 
-    // Prepare data to send
-    const userDetails = {
-        name: n,
-        email: e,
-        phonenumber: p
-    };
 
-    // Send POST request to the backend
-    fetch('http://localhost:8081/users/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userDetails)
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert(data); // Shows "User registered successfully! or Email or Phone number already registered!"
-    })
-    .catch(error => {
-        console.error('Error:', error);
+    const response = await fetch("http://localhost:8081/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, password }),
     });
+
+    if (response.ok) {
+        alert("Registration successful!");
+        window.location.href = "../Sign In/signin.html";
+    } else {
+        alert("Error registering user.");
+    }
 });

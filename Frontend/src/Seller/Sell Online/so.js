@@ -1,131 +1,96 @@
-const API_BASE_URL = "http://localhost:8081/products";
+// Adding event listener for Add Product button
+document.querySelector('.add-product-btn').addEventListener('click', async () => {
+    // Collect product details from the form
+    const product = {
+        name: document.getElementById('name').value.trim(),
+        size: document.getElementById('size').value.trim(),
+        colour: document.getElementById('colour').value.trim(),
+        category: document.getElementById('category').value.trim(),
+        price: parseFloat(document.getElementById('price').value.trim()),
+        image: document.getElementById('image').value.trim(),
+        description: document.getElementById('description').value.trim(),
+    };
 
-// Function to fetch and display products for the seller
-async function fetchSellerProducts() {
+    // Validation for form inputs
+    if (!product.name || !product.size || !product.colour || !product.category || isNaN(product.price) || !product.image || !product.description) {
+        alert('Please fill in all the fields correctly.');
+        return;
+    }
+
+    // Fetch sellerId from localStorage (assuming it's stored after login)
+    const sellerId = localStorage.getItem('sellerId');
+    if (!sellerId) {
+        alert('Seller is not logged in. Please log in again.');
+        window.location.href = '/signin.html'; // Redirect to login page if sellerId is not found
+        return;
+    }
+
     try {
-        const response = await fetch(`${API_BASE_URL}/my-products`, {
-            method: "GET",
-            credentials: "include", // Include session cookies
+        // Call backend API to add the product
+        const response = await fetch(`/products/add/${sellerId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product),
         });
 
         if (response.ok) {
-            const products = await response.json();
-            const container = document.getElementById("sellerProducts");
-            container.innerHTML = "";
-
-            products.forEach((product) => {
-                const productCard = `
-                    <div class="product-card">
-                        <img src="${product.imageUrl}" alt="${product.name}" />
-                        <h3>${product.name}</h3>
-                        <p>Price: $${product.price}</p>
-                        <p>Size: ${product.size}</p>
-                        <p>Color: ${product.color}</p>
-                        <p>Category: ${product.category}</p>                        
-                        <p>Description: ${product.description}</p>
-                        <button onclick="deleteProduct('${product.id}')">Delete</button>
-                       <button onclick="showUpdateForm('${product.imageUrl}', '${product.name}', '${product.price}', '${product.size}', '${product.color}', '${product.category}', '${product.description}', ${product.id})">Update</button>
-
-                    </div>
-                `;
-                container.innerHTML += productCard;
-            });
+            alert('Product added successfully!');
+            window.location.href = '/so.html'; // Redirect to the product list page
         } else {
-            alert("Failed to fetch products. Please log in as a seller.");
+            const errorData = await response.json();
+            alert(`Failed to add product: ${errorData.message || 'Unknown error'}`);
         }
     } catch (error) {
-        console.error("Error fetching seller products:", error);
+        console.error('Error adding product:', error);
+        alert('An error occurred while adding the product. Please try again.');
     }
-}
+});
 
-// Function to add a new product
-async function addProduct() {
-    const productData = {
-        name: document.getElementById("name").value,
-        color: document.getElementById("colour").value,
-        description: document.getElementById("description").value,
-        imageUrl: document.getElementById("image").value,
-       
-        
-        price: document.getElementById("price").value,
-       
-        sellerId: document.getElementById("sellerid").value,
-        size: document.getElementById("size").value,
-        
-        category: document.getElementById("category").value,
-        
-    };
+// Function to load and display products for the seller
+async function loadSellerProducts() {
+    const sellerId = localStorage.getItem('sellerId');
+    if (!sellerId) {
+        alert('Seller is not logged in. Please log in again.');
+        window.location.href = '/signin.html';
+        return;
+    }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/add`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(productData),
-        });
+        // Fetch products for the logged-in seller
+        const response = await fetch(`/api/products/${sellerId}`);
+        if (response.ok) {
+            const products = await response.json();
 
-        const result = await response.text();
-        alert(result);
-        fetchSellerProducts(); // Refresh product list
+            // Populate products in the HTML
+            const productContainer = document.querySelector('.product-container');
+            productContainer.innerHTML = ''; // Clear previous content
+
+            if (products.length === 0) {
+                productContainer.innerHTML = '<p>No products added yet.</p>';
+            } else {
+                products.forEach(product => {
+                    const productCard = `
+                        <div class="product">
+                            <img src="${product.image}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                            <p>Size: ${product.size}</p>
+                            <p>Colour: ${product.colour}</p>
+                            <p>Category: ${product.category}</p>
+                            <p>Price: ₹${product.price}</p>
+                            <p>${product.description}</p>
+                        </div>
+                    `;
+                    productContainer.innerHTML += productCard;
+                });
+            }
+        } else {
+            alert('Failed to load products. Please try again later.');
+        }
     } catch (error) {
-        console.error("Error adding product:", error);
+        console.error('Error loading products:', error);
+        alert('An error occurred while loading products.');
     }
 }
 
-// Function to delete a product
-async function deleteProduct(productId) {
-    try {
-        const response = await fetch(`${API_BASE_URL}/delete/${productId}`, {
-            method: "DELETE",
-        });
-
-        const result = await response.text();
-        alert(result);
-        fetchSellerProducts(); // Refresh product list
-    } catch (error) {
-        console.error("Error deleting product:", error);
-    }
-}
-
-// Function to update a product
-async function updateProduct(productId) {
-    const updatedData = {
-        name: document.getElementById("name").value,
-        size: document.getElementById("size").value,
-        color: document.getElementById("colour").value,
-        category: document.getElementById("category").value,
-        price: document.getElementById("price").value,
-        image: document.getElementById("image").value,
-        sellerId: document.getElementById("sellerid").value,
-        description: document.getElementById("description").value,
-    };
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/update/${productId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedData),
-        });
-
-        const result = await response.text();
-        alert(result);
-        fetchSellerProducts(); // Refresh product list
-    } catch (error) {
-        console.error("Error updating product:", error);
-    }
-}
-
-// Function to show the update form pre-filled with product data
-function showUpdateForm(image, name, price, size, colour, category, description, id) {
-    document.getElementById("image").value = image || "";
-    document.getElementById("name").value = name || "";
-    document.getElementById("price").value = price || "";
-    document.getElementById("size").value = size || "";
-    document.getElementById("colour").value = colour || "";
-    document.getElementById("category").value = category || "";
-    document.getElementById("description").value = description || "";
-    document.getElementById("updateForm").style.display = "block";
-    document.getElementById("updateSubmit").onclick = () => updateProduct(id);
-}
-
-// Call the function on page load
-fetchSellerProducts();
+// Call the function to load products on page load
+loadSellerProducts();

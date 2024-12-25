@@ -1,31 +1,22 @@
-document.querySelector('.continue-btn').addEventListener('click', function () {
-    const e = document.getElementById('email').value;
-    const p = document.getElementById('password').value;
-
-    // Prepare data to send
-    const userDetails = {
-        email: e,
-        phonenumber: e,
-        password: p
+document.querySelector('.continue-btn').addEventListener('click', async () => {
+    const loginDetails = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
     };
 
-    // Send POST request to the backend
-    fetch('http://localhost:8081/sellers/login', {
+    const response = await fetch("http://localhost:8081/sellers/login", {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userDetails)
-    })
-    .then(response => response.text())
-    .then(data => {
-        //alert(data); // Shows "Login successful!" or "Invalid Login."
-        if(data.trim()=="Login successful!"){
-            window.location.replace("../Sell Online/so.html");
-            //console.log("222");
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginDetails)
     });
+
+    if (response.ok) {
+        const seller = await response.json();
+        localStorage.setItem('sellerId', seller.id);
+        alert('Login successful');
+        window.location.href = '/Seller/Sell Online/so.html';  // Use relative path
+
+    } else {
+        alert('Invalid email or password');
+    }
 });
