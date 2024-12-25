@@ -14,7 +14,7 @@ document.querySelector('.continue-btn').addEventListener('click', async () => {
         const seller = await response.json();
         localStorage.setItem('sellerId', seller.id);
         alert('Login successful');
-        window.location.href = '/Seller/Sell Online/so.html';  // Use relative path
+        window.location.href = '../SellOnline/so.html';  // Use relative path
 
     } else {
         alert('Invalid email or password');
