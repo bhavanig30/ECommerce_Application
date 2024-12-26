@@ -1,0 +1,78 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+body {
+    font-family: 'Times New Roman', Times, serif;
+    color: #33333384;
+    background-color: #FFFFF7;
+}
+
+.add {
+    align-items: center;
+    justify-content: center;
+    width: 1500px;
+    height: 400px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 15px;
+}
+  
+/* Shop by Category Section */
+.shop-by-category {
+    text-align: center;
+    padding: 20px;
+}
+  
+.shop-by-category h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #0048BA;
+}
+  
+/* Cards Container */
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 20px;
+}
+  
+/* Individual Card */
+.card {
+    background-color: #FFC107;
+    border-radius: 15px; /* Larger rounding for a modern look */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for emphasis */
+    overflow: hidden;
+    text-align: center;
+    max-width: 400px; /* Increase the card width */
+    margin: auto;
+    transition: transform 0.2s ease;
+}
+  
+.card:hover {
+    transform: translateY(-10px);
+}
+  
+.card img {
+    width: 350px;
+    height: 218.75px; /* Set a fixed height for images */
+    object-fit: cover;
+}
+  
+.card-content {
+    padding: 20px;
+}
+  
+.card-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #0048BA;
+}
+
+iframe {
+    width: 100%;
+    height: 80px;
+}
