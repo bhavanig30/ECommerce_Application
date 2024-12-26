@@ -8,20 +8,21 @@
 body {
     font-family: 'Times New Roman', Times, serif;
     color: #33333384;
-    background-color: #FFFFF7;
+    background-color: #F5F5F5;
 }
 
 .add {
     align-items: center;
     justify-content: center;
-    width: 1500px;
+    width: 1519px;
     height: 400px;
-    margin: 10px 10px 10px 10px;
+    padding: 10px;
     border-radius: 15px;
 }
   
 /* Shop by Category Section */
 .shop-by-category {
+    width: 1519px;
     text-align: center;
     padding: 20px;
 }
@@ -45,7 +46,6 @@ body {
     background-color: #FFC107;
     border-radius: 15px; /* Larger rounding for a modern look */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for emphasis */
-    overflow: hidden;
     text-align: center;
     max-width: 400px; /* Increase the card width */
     margin: auto;
@@ -53,12 +53,14 @@ body {
 }
   
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(10px);
 }
   
 .card img {
     width: 350px;
     height: 218.75px; /* Set a fixed height for images */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     object-fit: cover;
 }
   
@@ -72,7 +74,7 @@ body {
     color: #0048BA;
 }
 
-iframe {
-    width: 100%;
-    height: 80px;
+.header {
+    position: sticky;
+    top: 0;
 }

@@ -2,7 +2,6 @@ document.querySelector(".verify-btn").addEventListener("click", async () => {
     const name = document.querySelector("#name").value;
     const email = document.querySelector("#email").value;
     const phone = document.querySelector("#phno").value;
-    //const password = prompt("Set your password:");
     const password = document.querySelector("#pass").value;
 
 
@@ -14,7 +13,7 @@ document.querySelector(".verify-btn").addEventListener("click", async () => {
 
     if (response.ok) {
         alert("Registration successful!");
-        window.location.href = "../Sign In/signin.html";
+        window.location.href = "../SignIn/signin.html";
     } else {
         alert("Error registering user.");
     }

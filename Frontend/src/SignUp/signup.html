@@ -2,12 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="Seller Signup page">
+        <meta name="description" content="Signup page">
         <meta name="author" content="Bhavani, Swetha">
-        <meta name="keywords" content="BS Seller Sign up, ECommerce Seller Signup">
+        <meta name="keywords" content="BS Sign up, ECommerce Signup">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BS Seller Signup</title>
-        <link rel="stylesheet" href="ssignup.css">
+        <title>BS Signup</title>
+        <link rel="stylesheet" href="signup.css">
     </head>
 
     <body>
@@ -19,26 +19,19 @@
         
             <!-- Sign-In Form -->
             <div class="form-container">
-                <h2>Create Your Seller Account</h2>
+                <h2>Create Account</h2>
 
                 <label for="name">Name</label>
                 <input type="text" id="name" placeholder="First and last name">
 
                 <label for="email">Email</label>
-                <input type="text" id="email" placeholder="eg: seller@org.in/com">
+                <input type="text" id="email">
 
                 <label for="phno">Phone number</label>
-                <input type="text" id="phno" placeholder="eg: 9876543210">
-
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="8 digits, Alpha-Numeric and can contain @">
-
-                <label for="storename">Store Name</label>
-                <input type="text" id="storename" placeholder="eg: BS Store">
-
-                <label for="storeaddress">Store Address</label>
-                <input type="text" id="storeaddress" placeholder="eg: 5063 BS/2, E-Commerce Street, Kovilpatti.">
-
+                <input type="text" id="phno">
+                
+                <label for="pass">Password</label>
+                <input type="password" id="pass">
                 <p class="otp-info">
                     To verify your number, we will send you a text message 
                     with a temporary code. Message and data rates may apply.
@@ -51,16 +44,16 @@
         
             <!-- Create Account -->
             <div class="have-account">
-                <p>Already have Account? <a href="../Sign In/ssignin.html">Sign in</a></p>
+                <p>Already have Account? <a href="../SignIn/signin.html">Sign in</a></p>
             </div>
 
             <p class="agreement">
                 By creating an account or logging in, you agree to BS's 
-                <a href="#">Conditions of Use</a> and 
-                <a href="#">Privacy Notice</a>.
+                <a href="../Condition/condition.html">Conditions of Use</a> and 
+                <a href="../Privacy/privacy.html">Privacy Notice</a>.
             </p>
         </div>
         <!-- Linking the JavaScript file -->
-        <script src="ssignup.js"></script>
+        <script src="signup.js"></script>
     </body>
 </html>
