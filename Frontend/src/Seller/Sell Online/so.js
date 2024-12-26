@@ -27,7 +27,7 @@ document.querySelector('.add-product-btn').addEventListener('click', async () =>
 
     try {
         // Call backend API to add the product
-        const response = await fetch(`/products/add/${sellerId}`, {
+        const response = await fetch(`http://localhost:8081/products/add/${sellerId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(product),
