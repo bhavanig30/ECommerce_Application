@@ -16,3 +16,5 @@ document.querySelector(".continue-btn").addEventListener("click", async () => {
         alert("Invalid email or phone number.");
     }
 });
+
+
